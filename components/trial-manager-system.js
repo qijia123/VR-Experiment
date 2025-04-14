@@ -61,7 +61,7 @@ AFRAME.registerSystem("trial-manager", {
         break; 
 
       case this.STATES.MOVINGOBJECT:
-        this.updateUIText(`Trial ${this.trialCounter + 1}:\nGrab the green cube and move it to the red target area.`);
+        this.updateUIText(`Trial ${this.trialCounter + 1}:\n\nGrab the green cube and move it to the red target area.`);
         // Use the external cube function.
         const { cubes, target } = createCubeTrial(this.sceneEl);
         this.currentCubes = cubes;
@@ -76,7 +76,7 @@ AFRAME.registerSystem("trial-manager", {
             console.log("✅ All spheres touched and removed — entering FINISH state.");
             this.enterState(this.STATES.FINISH);
           });
-          this.updateUIText("Trial 2:\nNow, use either hand to touch the sphere.");
+          this.updateUIText("Trial 2:\n\nNow, use either hand to touch the sphere.");
         }, 3000);
         break;   
 
