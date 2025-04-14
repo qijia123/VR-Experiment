@@ -10,13 +10,29 @@ AFRAME.registerComponent("joystick-movement", {
     tick(time, deltaTime) {
       const dt = deltaTime / 1000;
       const rigEl = this.el;
-      const rigRotation = rigEl.getAttribute("rotation").y;
-      const inputVector = new THREE.Vector3(this.joystick.x, 0, this.joystick.y);
-      const quat = new THREE.Quaternion().setFromAxisAngle(
+      const camera = document.querySelector("[camera]");
+      if (!camera) return;
+    
+      // Get the camera's Y-axis rotation (world direction)
+      const cameraObj = camera.object3D;
+      const cameraDirection = new THREE.Vector3();
+      cameraObj.getWorldDirection(cameraDirection);
+      cameraDirection.y = 0; // Flatten to horizontal plane
+      cameraDirection.normalize();
+    
+      // Calculate a right vector (perpendicular to forward)
+      const rightVector = new THREE.Vector3().crossVectors(
         new THREE.Vector3(0, 1, 0),
-        THREE.MathUtils.degToRad(rigRotation)
-      );
-      inputVector.applyQuaternion(quat).multiplyScalar(this.data.speed * dt);
-      rigEl.object3D.position.add(inputVector);
-    }
+        cameraDirection
+      );      
+    
+      // Calculate movement vector
+      const moveVector = new THREE.Vector3()
+        .addScaledVector(cameraDirection, this.joystick.y)
+        .addScaledVector(rightVector, this.joystick.x)
+        .multiplyScalar(this.data.speed * dt);
+    
+      // Apply movement to rig
+      rigEl.object3D.position.add(moveVector);
+    }    
   });

@@ -17,8 +17,11 @@
     <script src="components/phase-shift-component.js"></script>
     <script src="components/joystick-movement-component.js"></script>
     <script src="components/joystick-rotation-component.js"></script>
-    <script src="components/trial-manager-system.js"></script>
     <script src="components/disappear-on-touch.js"></script>
+    <script src="components/vibrate-on-touch.js"></script>
+
+
+    <script type="module" src="components/trial-manager-system.js"></script>
     
 
   </head>
@@ -47,9 +50,10 @@
                               colliderEndEvent: collisions;
                               colliderEndEventProperty: clearedEls;">
         </a-mixin>
+        <audio id="bubbleSound" src="./components/BubblePopping.mp3" preload="auto"></audio>
       </a-assets>
       <a-entity id="rig" joystick-movement="speed: 1.5" joystick-rotation="speed: 60">
-        <a-camera id="camera" positon="0 1.6 0"></a-camera>
+        <a-camera id="camera" position="0 1.6 0"></a-camera>
         <a-entity id="rightHand" mixin="touch"
                   hand-controls="hand: right; handModelStyle: lowPoly">
         </a-entity>
@@ -58,6 +62,7 @@
         </a-entity>
       </a-entity>
 
+      <a-entity id="touchSound" sound="src: #bubbleSound; on: play-sound; volume: 1"></a-entity>
 
       <!-- <a-entity class="cube" mixin="cube" position="0 1.6 -1.25" material="color: red"></a-entity> -->
 
@@ -72,23 +77,8 @@
         <a-text id="uiText" value="" align="center" position="0 0 0.1" width="1.8"></a-text>
       </a-entity>
 
-        <a-sphere position="-0.5 1.5 -0.5"
-                radius="0.1"
-                color="blue"
-                dynamic-body="mass: 0"
-                collision-filter="collisionForces: false"
-                hoverable
-                disappear-on-touch>
-      </a-sphere>
+        
 
-      <a-sphere position="0.5 1.5 -0.5"
-                radius="0.1"
-                color="blue"
-                dynamic-body="mass: 0"
-                collision-filter="collisionForces: false"
-                disappear-on-touch>
-      </a-sphere>
-
-     </body>
+  </body>
 </html>
 
