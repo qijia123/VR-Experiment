@@ -52,11 +52,12 @@ AFRAME.registerSystem("trial-manager", {
         break;
 
       case this.STATES.DATANOTICE:
-        this.updateUIText("We will collect your data while you finish the tasks. \nPress the right controller grip to begin.");
+        this.updateUIText("We will collect your data while you finish the tasks. \n\nPress the right controller grip to begin.");
         //setTimeout(() => {
           // Directly jump to the TOUCHINGOBJECT state for demonstration.
           //this.enterState(this.STATES.TOUCHINGOBJECT);
         //}, 1000);
+
         break; 
 
       case this.STATES.MOVINGOBJECT:
@@ -80,7 +81,7 @@ AFRAME.registerSystem("trial-manager", {
         break;   
 
       case this.STATES.FINISH:
-        this.updateUIText("Task completed!\n\nThank you for participating!\n\nPlease use a computer to fill out the questionnaire:\nhttps://example.com/questionnaire");
+        this.updateUIText("Task completed!\n\nThank you for participating!\n\nPlease use a computer to fill out the questionnaire:\nhttps://rb.gy/177ay7");
         break;
     }
   },
