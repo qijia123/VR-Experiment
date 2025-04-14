@@ -45,18 +45,18 @@ AFRAME.registerSystem("trial-manager", {
     this.experimentState = state;
     switch (state) {
       case this.STATES.WELCOME:
-        this.updateUIText("Welcome!\n\nIn this experiment, you will complete two tasks. \nPress the right controller grip to continue.");
-        setTimeout(() => {
-          this.enterState(this.STATES.DATANOTICE);
-        }, 1000);
+        this.updateUIText("Welcome!\n\nIn this experiment, you will complete two tasks. \n\nPress the right controller grip to continue.");
+        //setTimeout(() => {
+          //this.enterState(this.STATES.DATANOTICE);
+        //}, 1000);
         break;
 
       case this.STATES.DATANOTICE:
         this.updateUIText("We will collect your data while you finish the tasks. \nPress the right controller grip to begin.");
-        setTimeout(() => {
+        //setTimeout(() => {
           // Directly jump to the TOUCHINGOBJECT state for demonstration.
-          this.enterState(this.STATES.TOUCHINGOBJECT);
-        }, 1000);
+          //this.enterState(this.STATES.TOUCHINGOBJECT);
+        //}, 1000);
         break; 
 
       case this.STATES.MOVINGOBJECT:
